@@ -34,6 +34,7 @@ function App() {
   const connectIcon = useRef(null)
 
   async function LoadingBar() {
+
     const border = loadingBorder.current;
     const bar = loadingbar.current;
     const page = pageRef.current;
@@ -119,8 +120,6 @@ function App() {
           }
         ).finished.then(() => {
 
-
-
           avatarRef.current.style.width = '50px'
           avatarRef.current.style.height = '50px'
           avatarRef.current.style.display = 'none'
@@ -188,13 +187,13 @@ function App() {
     // Animate "p2"
     await p2.current.animate(
       [{ opacity: 0 }, { opacity: 1 }],
-      { duration: 500, fill: 'forwards', delay: 500 }
+      { duration: 500, fill: 'forwards', delay: 1500 }
     ).finished;
     p2.current.style.opacity = 1;
 
     await aboutContainer.current.animate(
       [{ scale: 1 }, { scale: .7 }],
-      { duration: 500, fill: 'forwards', delay: 500 }
+      { duration: 500, fill: 'forwards', delay: 1500 }
     ).finished;
     p2.current.style.opacity = 1;
 
@@ -232,7 +231,7 @@ function App() {
     await postsContainer.current.animate([
       { height: '0px' },
       { height: '230px' },
-    ], { duration: 400 }).finished
+    ], { duration: 400, delay: 1000 }).finished
 
     postsContainer.current.style.height = '230px'
 
@@ -258,25 +257,29 @@ function App() {
   }
 
   async function main() {
+
     mainRef.current.style.display = 'flex'
+    mainRef.current.style.margin = 0
+
     mainRef.current.style.opacity = 1
     await mainRef.current.animate([{
-      height: '0px',
-    }, { height: '300px' }], { duration: 400 }).finished
+      height: '0px', margin: 0
+    }, { height: '300px', margin: '3rem' }], { duration: 400, delay: 1000 }).finished
 
     mainRef.current.style.height = '300px'
+    mainRef.current.style.margin = '3rem'
 
     mainH1.current.style.display = ''
     await mainH1.current.animate([
       { opacity: 0 }, { opacity: 1 }, { opacity: 1 }, { opacity: 0 }
-    ], { duration: 2000 }).finished
+    ], { duration: 3000 }).finished
 
     mainH1.current.style.display = 'none'
 
     mainH2.current.style.display = ''
     await mainH2.current.animate([
       { opacity: 0 }, { opacity: 1 }, { opacity: 1 }, { opacity: 0 }
-    ], { duration: 2000 }).finished
+    ], { duration: 3000 }).finished
 
     mainH2.current.style.display = 'none'
   }
@@ -337,12 +340,12 @@ function App() {
       { duration: 400 }).finished.then(() => {
 
         LoadingBar()
-          .then(AvatarIconAnimate)
-          .then(setup)
-          .then(tech)
-          .then(stuffPosts)
-          .then(main)
-          .then(connect)
+        .then(AvatarIconAnimate)
+        .then(setup)
+        .then(tech)
+        .then(stuffPosts)
+        .then(main)
+        .then(connect)
       })
 
   }, [ref.current])
@@ -373,12 +376,11 @@ function App() {
             }}></div>
           </div></div >
       </div>
-
       <img ref={avatarRef} width={300} style={{ opacity: 0, border: '12px solid yellow', position: 'absolute', top: ' 50%', left: '50%', transform: 'translate(-50%, -50%)', borderRadius: 300, }} height={300} src="1745994170713.jpeg" alt="avatar icon" />
-      <div style={{ padding: '1rem', minHeight: window.innerHeight - 50, display: 'flex', flexDirection: 'column' }}>
+      <div  style={{  padding: '1rem', minHeight: window.innerHeight - 50, display: 'flex', flexDirection: 'column' }}>
         <div style={{ width: 'full', display: 'flex', justifyContent: 'space-between' }}>
           <div style={{
-            display: 'flex'
+            display: 'flex', height: "50px"
           }}>
             <span ref={nameRef} style={{
               margin: 'auto ', fontSize: '24px',
@@ -388,14 +390,11 @@ function App() {
           <img ref={avatarRefMain} width={50} style={{ opacity: 0, borderRadius: 300, border: '3px solid yellow ' }} height={50} src="1745994170713.jpeg" alt="avatar icon" />
         </div>
         <div>
-
         </div>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <div ref={delimiterRef} style={{ width: 0, opacity: 0, background: 'gray', padding: '.05rem', borderRadius: '.2rem', margin: '1rem 0 ' }}></div>
         </div>
-
-
-        <div ref={mainRef} style={{ display: 'none', margin: '3rem', height: '0px', justifyContent: 'center', alignItems: 'center', }}>
+        <div ref={mainRef} style={{ display: 'none', height: '0px', justifyContent: 'center', alignItems: 'center', }}>
           <div ref={connectRef} style={{ display: 'none', justifyContent: 'center' }}>
             <div ref={connectIcon} style={{ width: 300, opacity: 0, height: 300, borderRadius: '50%', border: '12px solid yellow', overflow: 'hidden', marginLeft: 'auto' }}>
               <img
@@ -444,7 +443,7 @@ function App() {
 
           <h2 style={{ display: 'none' }} ref={mainH2}>like to connect? </h2>
           <h2 style={{ display: 'none' }} ref={mainH1}>
-            and i suck at designing stuff(learning),
+            and i suck at designing (learning),
             <br />  but i can build stuff.</h2>
 
         </div>
@@ -496,7 +495,7 @@ function App() {
         </div>
 
         <div ref={aboutContainer} style={{
-          flexGrow: 1, display: 'flex'
+          flexGrow: 1, display: 'flex' 
         }}>
           <div
             style={{
